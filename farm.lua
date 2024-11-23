@@ -18,7 +18,6 @@ end
 
 -- // Load Logic // --
 if _G.loaded == true then
-    notify("Already loaded!", "You already executed this script!", "nothing")
     return
 end
 _G.loaded = true
@@ -28,12 +27,8 @@ _G.loaded = true
 local stop_autofarm = false
 local menu = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.SettingsMenu.Menu
 menu.ImageColor3 = Color3.fromRGB(255, 40, 40)
-menu.TextLabel.Text = "Stop Autofarm"
-menu.Name = "duck"
 local store = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.SettingsMenu.Store
 store.ImageColor3 = Color3.fromRGB(255, 40, 40)
-store.TextLabel.Text = "Infinite Yield"
-store.Name = "duck2"
 task.wait(1)
 local menu_hyjaked = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.SettingsMenu.duck
 local store_hyjaked = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.SettingsMenu.duck2
@@ -52,7 +47,6 @@ menu_hyjaked.MouseButton1Click:Connect(function()
 end)
 store_hyjaked.MouseButton1Click:Connect(function()
     if stop_autofarm == false then
-        -- // why not // --
         loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
     end
 end)
@@ -153,7 +147,7 @@ local function load_items()
         ingredients.side_tab = tabs_path["Side"].AbsolutePosition
     end)
     if not succ then
-        notify("Script Error!", "An error has occurred when trying to update item positions.", "rbxassetid://4519042263")
+        print("error")
     end
 end
 
@@ -309,5 +303,4 @@ while stop_autofarm == false do
     end
 end
 
-notify("Stopped", "The autofarm has stopped. Hope you enjoyed!", "rbxassetid://4485364382")
 _G.loaded = false
