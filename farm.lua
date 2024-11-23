@@ -4,14 +4,27 @@ local autofarm_time = _G.time
 local no_print = _G.print
 
 
+-- // Notifier // --
+-- // I wanted to hijack bloxburg's one but i got lazy :( // --
+local function notify(title, msg, icon)
+    game.StarterGui:SetCore("SendNotification",{
+        Title = title;
+        Text = msg;
+        Icon = icon;
+        Duration = 5;
+        })
+end
 
+
+-- // Load Logic // --
 if _G.loaded == true then
-    print("ALR LOADED")
+    print("alr loaded")
     return
 end
 _G.loaded = true
 
 
+-- // Hijack gui // --
 local stop_autofarm = false
 local menu = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.SettingsMenu.Menu
 menu.ImageColor3 = Color3.fromRGB(255, 40, 40)
@@ -162,6 +175,13 @@ local image_to_object = {
 }
 
 
+-- // Custom print function lol // --
+local function duck_print(msg)
+    if no_print == false then
+        print(msg)
+    end
+end
+
 
 -- // Click Function // --
 function click(object)
@@ -276,7 +296,7 @@ while stop_autofarm == false do
         end
         order, amount, order_place = find_order()
         if os.time() - time_started > (autofarm_time * 3600) then
-            return game.Players.LocalPlayer:Kick("The autofarm automatically ended after "..tostring(autofarm_time).." hours! Hope you enjoyed!")
+            return game.Players.LocalPlayer:Kick("The autofarm automatically ended")
         end
     else
         if burger_done == true then
@@ -289,5 +309,5 @@ while stop_autofarm == false do
     end
 end
 
-
+print("stopped")
 _G.loaded = false
