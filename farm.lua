@@ -4,26 +4,13 @@ local autofarm_time = _G.time
 local no_print = _G.print
 
 
--- // Notifier // --
--- // I wanted to hijack bloxburg's one but i got lazy :( // --
-local function notify(title, msg, icon)
-    game.StarterGui:SetCore("SendNotification",{
-        Title = title;
-        Text = msg;
-        Icon = icon;
-        Duration = 5;
-        })
-end
 
-
--- // Load Logic // --
 if _G.loaded == true then
     return
 end
 _G.loaded = true
 
 
--- // Hijack gui // --
 local stop_autofarm = false
 local menu = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.SettingsMenu.Menu
 menu.ImageColor3 = Color3.fromRGB(255, 40, 40)
@@ -47,6 +34,7 @@ menu_hyjaked.MouseButton1Click:Connect(function()
 end)
 store_hyjaked.MouseButton1Click:Connect(function()
     if stop_autofarm == false then
+        -- // why not // --
         loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
     end
 end)
@@ -57,9 +45,9 @@ game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.Settings.MouseButto
     if stop_autofarm == false then
         task.wait(.1)
         menu_hyjaked.ImageColor3 = Color3.fromRGB(255, 40, 40)
-        menu_hyjaked.TextLabel.Text = "Stop Autofarm"
+        
         store_hyjaked.ImageColor3 = Color3.fromRGB(255, 40, 40)
-        store_hyjaked.TextLabel.Text = "Infinite Yield"
+        
     end
 end)
 
@@ -147,7 +135,7 @@ local function load_items()
         ingredients.side_tab = tabs_path["Side"].AbsolutePosition
     end)
     if not succ then
-        print("error")
+        print("ERROR")
     end
 end
 
@@ -168,13 +156,6 @@ local image_to_object = {
     ["rbxassetid://1588110682"] = "milkshake"
 }
 
-
--- // Custom print function lol // --
-local function duck_print(msg)
-    if no_print == false then
-        print(msg)
-    end
-end
 
 
 -- // Click Function // --
@@ -290,7 +271,7 @@ while stop_autofarm == false do
         end
         order, amount, order_place = find_order()
         if os.time() - time_started > (autofarm_time * 3600) then
-            return game.Players.LocalPlayer:Kick("The autofarm automatically ended after "..tostring(autofarm_time).." hours! Hope you enjoyed!")
+            return game.Players.LocalPlayer:Kick("The autofarm automatically ended after "..tostring(autofarm_time)..)
         end
     else
         if burger_done == true then
@@ -302,5 +283,6 @@ while stop_autofarm == false do
         end
     end
 end
+
 
 _G.loaded = false
