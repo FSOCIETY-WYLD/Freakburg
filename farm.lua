@@ -4,8 +4,6 @@ local autofarm_time = _G.time
 local no_print = _G.print
 
 
--- // Notifier // --
--- // I wanted to hijack bloxburg's one but i got lazy :( // --
 local function notify(title, msg, icon)
     game.StarterGui:SetCore("SendNotification",{
         Title = title;
@@ -28,7 +26,7 @@ _G.loaded = true
 local stop_autofarm = false
 local menu = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.SettingsMenu.Menu
 menu.ImageColor3 = Color3.fromRGB(255, 40, 40)
-menu.TextLabel.Text = "Stop Autofarm"
+menu.TextLabel.Text = "Stop"
 menu.Name = "duck"
 local store = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.SettingsMenu.Store
 store.ImageColor3 = Color3.fromRGB(255, 40, 40)
@@ -153,7 +151,7 @@ local function load_items()
         ingredients.side_tab = tabs_path["Side"].AbsolutePosition
     end)
     if not succ then
-        notify("Script Error!", "An error has occurred when trying to update item positions.", "rbxassetid://4519042263")
+        print("ERROR")
     end
 end
 
