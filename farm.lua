@@ -4,7 +4,19 @@ local autofarm_time = _G.time
 local no_print = _G.print
 
 
+-- // Notifier // --
+-- // I wanted to hijack bloxburg's one but i got lazy :( // --
+local function notify(title, msg, icon)
+    game.StarterGui:SetCore("SendNotification",{
+        Title = title;
+        Text = msg;
+        Icon = icon;
+        Duration = 5;
+        })
+end
 
+
+-- // Load Logic // --
 if _G.loaded == true then
     notify("Already loaded!", "You already executed this script!", "nothing")
     return
@@ -12,6 +24,7 @@ end
 _G.loaded = true
 
 
+-- // Hijack gui // --
 local stop_autofarm = false
 local menu = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.SettingsMenu.Menu
 menu.ImageColor3 = Color3.fromRGB(255, 40, 40)
@@ -162,6 +175,13 @@ local image_to_object = {
 }
 
 
+-- // Custom print function lol // --
+local function duck_print(msg)
+    if no_print == false then
+        print(msg)
+    end
+end
+
 
 -- // Click Function // --
 function click(object)
@@ -289,5 +309,5 @@ while stop_autofarm == false do
     end
 end
 
-
+notify("Stopped", "The autofarm has stopped. Hope you enjoyed!", "rbxassetid://4485364382")
 _G.loaded = false
