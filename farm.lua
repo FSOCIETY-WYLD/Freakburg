@@ -6,6 +6,7 @@ local no_print = _G.print
 
 
 if _G.loaded == true then
+    print("ALR LOADED")
     return
 end
 _G.loaded = true
@@ -14,8 +15,12 @@ _G.loaded = true
 local stop_autofarm = false
 local menu = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.SettingsMenu.Menu
 menu.ImageColor3 = Color3.fromRGB(255, 40, 40)
+menu.TextLabel.Text = "Stop Autofarm"
+menu.Name = "duck"
 local store = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.SettingsMenu.Store
 store.ImageColor3 = Color3.fromRGB(255, 40, 40)
+store.TextLabel.Text = "Infinite Yield"
+store.Name = "duck2"
 task.wait(1)
 local menu_hyjaked = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.SettingsMenu.duck
 local store_hyjaked = game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.SettingsMenu.duck2
@@ -45,9 +50,9 @@ game:GetService("Players").LocalPlayer.PlayerGui.MainGUI.Bar.Settings.MouseButto
     if stop_autofarm == false then
         task.wait(.1)
         menu_hyjaked.ImageColor3 = Color3.fromRGB(255, 40, 40)
-        
+        menu_hyjaked.TextLabel.Text = "Stop Autofarm"
         store_hyjaked.ImageColor3 = Color3.fromRGB(255, 40, 40)
-        
+        store_hyjaked.TextLabel.Text = "Infinite Yield"
     end
 end)
 
@@ -135,7 +140,7 @@ local function load_items()
         ingredients.side_tab = tabs_path["Side"].AbsolutePosition
     end)
     if not succ then
-        print("ERROR")
+        notify("Script Error!", "An error has occurred when trying to update item positions.", "rbxassetid://4519042263")
     end
 end
 
@@ -271,7 +276,7 @@ while stop_autofarm == false do
         end
         order, amount, order_place = find_order()
         if os.time() - time_started > (autofarm_time * 3600) then
-            return game.Players.LocalPlayer:Kick("The autofarm automatically ended after "..tostring(autofarm_time)..)
+            return game.Players.LocalPlayer:Kick("The autofarm automatically ended after "..tostring(autofarm_time).." hours! Hope you enjoyed!")
         end
     else
         if burger_done == true then
